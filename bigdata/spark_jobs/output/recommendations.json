@@ -1,0 +1,245 @@
+{
+  "rmse": 1.7481,
+  "recommendations": [
+    {
+      "user_id": 1,
+      "recommendations": [
+        {
+          "product_id": 101,
+          "product_name": "Laptop",
+          "predicted_rating": 4.88
+        },
+        {
+          "product_id": 107,
+          "product_name": "Keyboard",
+          "predicted_rating": 4.13
+        },
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 3.01
+        },
+        {
+          "product_id": 110,
+          "product_name": "Speaker",
+          "predicted_rating": 2.97
+        },
+        {
+          "product_id": 105,
+          "product_name": "Smartwatch",
+          "predicted_rating": 2.7
+        }
+      ]
+    },
+    {
+      "user_id": 2,
+      "recommendations": [
+        {
+          "product_id": 104,
+          "product_name": "Tablet",
+          "predicted_rating": 4.85
+        },
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 4.27
+        },
+        {
+          "product_id": 103,
+          "product_name": "Headphones",
+          "predicted_rating": 3.71
+        },
+        {
+          "product_id": 108,
+          "product_name": "Mouse",
+          "predicted_rating": 3.06
+        },
+        {
+          "product_id": 105,
+          "product_name": "Smartwatch",
+          "predicted_rating": 3.01
+        }
+      ]
+    },
+    {
+      "user_id": 3,
+      "recommendations": [
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 4.86
+        },
+        {
+          "product_id": 104,
+          "product_name": "Tablet",
+          "predicted_rating": 4.03
+        },
+        {
+          "product_id": 101,
+          "product_name": "Laptop",
+          "predicted_rating": 3.99
+        },
+        {
+          "product_id": 105,
+          "product_name": "Smartwatch",
+          "predicted_rating": 3.86
+        },
+        {
+          "product_id": 107,
+          "product_name": "Keyboard",
+          "predicted_rating": 3.83
+        }
+      ]
+    },
+    {
+      "user_id": 4,
+      "recommendations": [
+        {
+          "product_id": 107,
+          "product_name": "Keyboard",
+          "predicted_rating": 4.81
+        },
+        {
+          "product_id": 105,
+          "product_name": "Smartwatch",
+          "predicted_rating": 3.98
+        },
+        {
+          "product_id": 101,
+          "product_name": "Laptop",
+          "predicted_rating": 3.07
+        },
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 2.51
+        },
+        {
+          "product_id": 108,
+          "product_name": "Mouse",
+          "predicted_rating": 2.43
+        }
+      ]
+    },
+    {
+      "user_id": 5,
+      "recommendations": [
+        {
+          "product_id": 103,
+          "product_name": "Headphones",
+          "predicted_rating": 4.95
+        },
+        {
+          "product_id": 106,
+          "product_name": "Camera",
+          "predicted_rating": 3.84
+        },
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 3.6
+        },
+        {
+          "product_id": 104,
+          "product_name": "Tablet",
+          "predicted_rating": 3.13
+        },
+        {
+          "product_id": 108,
+          "product_name": "Mouse",
+          "predicted_rating": 3.0
+        }
+      ]
+    },
+    {
+      "user_id": 6,
+      "recommendations": [
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 3.88
+        },
+        {
+          "product_id": 101,
+          "product_name": "Laptop",
+          "predicted_rating": 3.29
+        },
+        {
+          "product_id": 103,
+          "product_name": "Headphones",
+          "predicted_rating": 3.15
+        },
+        {
+          "product_id": 107,
+          "product_name": "Keyboard",
+          "predicted_rating": 3.07
+        },
+        {
+          "product_id": 105,
+          "product_name": "Smartwatch",
+          "predicted_rating": 3.05
+        }
+      ]
+    },
+    {
+      "user_id": 7,
+      "recommendations": [
+        {
+          "product_id": 101,
+          "product_name": "Laptop",
+          "predicted_rating": 4.85
+        },
+        {
+          "product_id": 107,
+          "product_name": "Keyboard",
+          "predicted_rating": 4.01
+        },
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 3.21
+        },
+        {
+          "product_id": 110,
+          "product_name": "Speaker",
+          "predicted_rating": 2.97
+        },
+        {
+          "product_id": 105,
+          "product_name": "Smartwatch",
+          "predicted_rating": 2.72
+        }
+      ]
+    },
+    {
+      "user_id": 8,
+      "recommendations": [
+        {
+          "product_id": 107,
+          "product_name": "Keyboard",
+          "predicted_rating": 4.97
+        },
+        {
+          "product_id": 105,
+          "product_name": "Smartwatch",
+          "predicted_rating": 4.9
+        },
+        {
+          "product_id": 102,
+          "product_name": "Phone",
+          "predicted_rating": 4.38
+        },
+        {
+          "product_id": 108,
+          "product_name": "Mouse",
+          "predicted_rating": 3.94
+        },
+        {
+          "product_id": 101,
+          "product_name": "Laptop",
+          "predicted_rating": 3.62
+        }
+      ]
+    }
+  ]
+}

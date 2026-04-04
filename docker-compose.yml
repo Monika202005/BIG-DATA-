@@ -1,0 +1,93 @@
+services:
+
+  # ── YOUR EXISTING SERVICES ──────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: always
+
+  # ── HADOOP NAMENODE (official Apache image) ─────────
+  namenode:
+    image: apache/hadoop:3.3.6
+    container_name: namenode
+    hostname: namenode
+    user: root
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    environment:
+      HADOOP_HOME: /opt/hadoop
+    volumes:
+      - hadoop_namenode:/tmp/hadoop-root/dfs/name
+      - ./bigdata/hadoop/start-namenode.sh:/start-namenode.sh
+    command: [ "/bin/bash", "/start-namenode.sh" ]
+    restart: always
+
+  # ── HADOOP DATANODE (official Apache image) ─────────
+  datanode:
+    image: apache/hadoop:3.3.6
+    container_name: datanode
+    hostname: datanode
+    user: root
+    depends_on:
+      - namenode
+    environment:
+      HADOOP_HOME: /opt/hadoop
+    volumes:
+      - hadoop_datanode:/tmp/hadoop-root/dfs/data
+      - ./bigdata/hadoop/start-datanode.sh:/start-datanode.sh
+    command: [ "/bin/bash", "/start-datanode.sh" ]
+    restart: always
+
+  # ── SPARK MASTER (official Docker Hub image) ────────
+  spark-master:
+    image: spark:python3
+    container_name: spark-master
+    hostname: spark-master
+    user: root
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    volumes:
+      - ./bigdata/spark_jobs:/opt/spark-jobs
+    command: [ "/opt/spark/sbin/start-master.sh", "--host", "spark-master", "--port", "7077", "--webui-port", "8080" ]
+    restart: always
+
+  # ── SPARK WORKER (official Docker Hub image) ────────
+  spark-worker:
+    image: spark:python3
+    container_name: spark-worker
+    user: root
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=1g
+      - SPARK_WORKER_CORES=2
+    volumes:
+      - ./bigdata/spark_jobs:/opt/spark-jobs
+    command: [ "/opt/spark/sbin/start-worker.sh", "spark://spark-master:7077" ]
+    restart: always
+
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
