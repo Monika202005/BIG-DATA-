@@ -23,7 +23,7 @@ The backend powers the Apriori algorithms and serves the data. We need to run it
 ### Step-by-Step Commands:
 1. **Open a new Terminal window** and navigate to your `backend` folder:
    ```bash
-   cd "/Users/monika/antigravity/dbms proj/backend"
+   cd 
    ```
 
 2. **Create a virtual environment** to keep dependencies isolated:
@@ -56,7 +56,7 @@ The frontend is the visual dashboard you interact with. We need to run it in a *
 ### Step-by-Step Commands:
 1. **Open a second Terminal window** and navigate to your `frontend` folder:
    ```bash
-   cd "/Users/monika/antigravity/dbms proj/frontend"
+   cd frontend
    ```
 
 2. **Install the required Node packages (if you haven't already)**:
@@ -105,7 +105,7 @@ If you have **Docker Desktop** installed, you can skip steps 2 and 3 completely!
 
 1. Open your terminal and navigate to the **root** folder:
    ```bash
-   cd "/Users/monika/antigravity/dbms proj"
+   cd 
    ```
 
 2. Build and start the containers:
