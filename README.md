@@ -119,8 +119,7 @@ python bigdata/spark_jobs/recommend.py
 
 ## 🎥 Demo Video
 
-👉 Add your 2-minute demo video link here:
-(YouTube / Google Drive link)
+https://drive.google.com/file/d/1itoLOzfsdzxUtfAjkef6EVWfLqOl-BUP/view?usp=sharing
 
 ---
 
