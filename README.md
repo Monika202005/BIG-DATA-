@@ -7,7 +7,7 @@
 ## 👥 Team Members
 
 * **Monika** – Frontend + backend
-* **Vaasv**– Backend 
+* **Vaasvi**– Backend 
 
 ---
 
