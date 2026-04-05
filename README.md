@@ -23,7 +23,7 @@ The backend powers the Apriori algorithms and serves the data. We need to run it
 ### Step-by-Step Commands:
 1. **Open a new Terminal window** and navigate to your `backend` folder:
    ```bash
-   cd 
+   cd backend
    ```
 
 2. **Create a virtual environment** to keep dependencies isolated:
