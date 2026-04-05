@@ -105,7 +105,7 @@ If you have **Docker Desktop** installed, you can skip steps 2 and 3 completely!
 
 1. Open your terminal and navigate to the **root** folder:
    ```bash
-   cd 
+   cd dbms_proj_6
    ```
 
 2. Build and start the containers:
