@@ -6,8 +6,8 @@
 
 ## 👥 Team Members
 
-* **Monika** – Frontend + backend
-* **Vaasvi**– Backend 
+* **Monika** – 24bds043
+* **Vaasvi**– 24bds086
 
 ---
 
