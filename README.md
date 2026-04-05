@@ -1,117 +1,292 @@
-# AI-Powered E-commerce Recommendation Engine
-*Setup and Run Guide*
+# 🛒 AI-Powered E-Commerce Recommendation Engine
 
-Welcome to your new Advanced E-commerce Recommendation Engine! Follow these step-by-step instructions to get the application running locally on your computer.
-
----
-
-## 🔷 1. ENVIRONMENT SETUP
-
-Before you begin, make sure your computer has the following tools installed:
-
-1. **Python (v3.8 or newer)**: Required to run the FastAPI backend and Machine Learning algorithms.
-   - *Check*: Open your terminal and type `python3 --version`.
-2. **Node.js (v18 or newer)**: Required to run the React frontend.
-   - *Check*: Open your terminal and type `node -v` and `npm -v`.
+> *Smarter Suggestions, Explainable Results* — A full-stack recommendation system combining Apriori association rules, Apache Spark MLlib collaborative filtering, and real-time MongoDB tracking.
 
 ---
 
-## 🔷 2. BACKEND SETUP (FastAPI)
+## 📸 Overview
 
-The backend powers the Apriori algorithms and serves the data. We need to run it in its own terminal window.
-
-### Step-by-Step Commands:
-1. **Open a new Terminal window** and navigate to your `backend` folder:
-   ```bash
-   cd backend
-   ```
-
-2. **Create a virtual environment** to keep dependencies isolated:
-   ```bash
-   python3 -m venv venv
-   ```
-
-3. **Activate the virtual environment**:
-   - On Mac/Linux: `source venv/bin/activate`
-   - On Windows: `venv\Scripts\activate`
-
-4. **Install the required Python packages**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Start the FastAPI server**:
-   ```bash
-   uvicorn main:app --reload
-   ```
-
-> **Expected Output:** You should see `Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)`. Leave this terminal **open & running**.
+This project is a **college DBMS capstone** that implements a production-style e-commerce recommendation engine. It demonstrates OLTP/Data Warehouse database design, machine learning at scale with Apache Spark, and a real-time React dashboard.
 
 ---
 
-## 🔷 3. FRONTEND SETUP (React + Vite)
+## 🧠 Tech Stack
 
-The frontend is the visual dashboard you interact with. We need to run it in a **second, separate terminal window**.
-
-### Step-by-Step Commands:
-1. **Open a second Terminal window** and navigate to your `frontend` folder:
-   ```bash
-   cd frontend
-   ```
-
-2. **Install the required Node packages (if you haven't already)**:
-   ```bash
-   npm install
-   ```
-
-3. **Start the Vite Development server**:
-   ```bash
-   npm run dev
-   ```
-
-> **Expected Output:** You should see `➜  Local:   http://localhost:5173/`. Leave this terminal **open & running**.
+| Layer | Technology |
+|---|---|
+| **Frontend** | React + Vite (port 5173) |
+| **Backend** | FastAPI / Python (port 8000) |
+| **OLTP Database** | MySQL — `ecommerce_oltp` |
+| **Data Warehouse** | MySQL — `ecommerce_dw` |
+| **Activity Tracking** | MongoDB |
+| **Big Data Engine** | Apache Spark (PySpark 3.4.1) |
+| **ML Algorithm** | Spark MLlib — ALS Collaborative Filtering |
+| **Association Rules** | Apriori Algorithm (custom pipeline) |
 
 ---
 
-## 🔷 4. HOW TO VERIFY EVERYTHING IS WORKING
+## ✨ Features
 
-1. Open your web browser (Chrome, Safari, Firefox, etc.).
-2. Go to: **http://localhost:5173**
-3. **What you should see**: A premium dashboard titled "Smarter Suggestions, Explainable Results". 
-
-**Test the Recommendation Engine:**
-1. Click the **"Simulate User"** button at the top right to watch the AI automatically inject products and spit out predictions dynamically!
-2. **Alternatively (Manual mode)**: Click the Search bar and type `Laptop`. Add it to your active basket.
-3. You should instantly see a card like `Mouse` appear with a **Green (Strong)** Confidence badge and an explanation citing *"Recommended because X% of users who bought Laptop also bought this."*
-
----
-
-## 🔷 5. COMMON ERRORS & FIXES
-
-Here’s how to troubleshoot if something goes wrong:
-
-| Issue | How to Fix It |
-| :--- | :--- |
-| **Port already in use (`error: [Errno 98] Address already in use`)** | Another app is using port 8000 or 5173. Stop other servers or change the port (e.g. `uvicorn main:app --port 8001`) |
-| **ModuleNotFoundError (e.g., 'No module named fastapi')** | You forgot to activate your virtual environment. Run `source venv/bin/activate` in the backend folder, then `pip install -r requirements.txt` again. |
-| **Cross-Origin / Network Error in Browser** | The React app can't talk to the backend. Ensure your backend terminal is actually running and there are no crash errors. |
-| **"npm: command not found"** | You do not have Node.js installed. Download it from `nodejs.org`. |
+- 🔍 **Real-time product search** with instant recommendations
+- 🤖 **Apriori Association Rules** — *"Users who bought X also bought Y"*
+- ⚡ **Spark MLlib ALS Model** — collaborative filtering across all users
+- 📊 **Analytics Dashboard** — top products, rule confidence, lift scores
+- 🧪 **Simulate User** button — auto-injects products and shows predictions
+- 📈 **Explainable AI** — every recommendation shows *why* it was made
+- 🟢 **Confidence badges** — Strong / Medium / Weak color-coded signals
+- 🗄️ **MongoDB activity tracking** — logs every user interaction
 
 ---
 
-## 🔷 6. OPTIONAL: RUN WITH DOCKER (EASIEST WAY)
+## 🏗️ Architecture
 
-If you have **Docker Desktop** installed, you can skip steps 2 and 3 completely! Docker packages the whole stack and runs it for you in one command.
+```
+React Frontend (port 5173)
+        ↕
+FastAPI Backend (port 8000)
+        ↕
+┌───────────────────────────┐
+│  Apriori Rules Engine     │  ← 176 pre-loaded rules in memory
+│  rules_cache.json         │
+└───────────────────────────┘
+        ↕
+┌───────────────────────────┐
+│  Apache Spark (MLlib)     │  ← Big Data layer
+│  ALS Recommendation Model │  ← Trains on user-product ratings
+│  recommendations.json     │  ← Output served via API
+└───────────────────────────┘
+        ↕
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│  MySQL OLTP  │  │  MySQL DW    │  │   MongoDB    │
+│  (orders)    │  │  (analytics) │  │  (tracking)  │
+└──────────────┘  └──────────────┘  └──────────────┘
+```
 
-1. Open your terminal and navigate to the **root** folder:
-   ```bash
-   cd dbms_proj_6
-   ```
+---
 
-2. Build and start the containers:
-   ```bash
-   docker-compose up -d --build
-   ```
+## 🚀 Getting Started
 
-3. Go to `http://localhost:5173` in your browser.
-*(To stop the server later, type `docker-compose down`).*
+### Prerequisites
+
+- Python 3.11+
+- Node.js 18+
+- MySQL (running locally)
+- MongoDB (running locally)
+- Java 11+ (required for PySpark)
+
+> **Check Java:** `java -version` — if not installed, download from [adoptium.net](https://adoptium.net/) and select Java 11 LTS.
+
+---
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/dbms-proj.git
+cd "dbms proj 4"
+```
+
+---
+
+### 2. Backend Setup
+
+```bash
+cd backend
+
+# Create virtual environment
+python -m venv venv
+
+# Activate it
+# Windows:
+.\venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+pip install pyspark==3.4.1 findspark
+```
+
+---
+
+### 3. Database Setup
+
+Make sure MySQL is running, then create the databases:
+
+```sql
+CREATE DATABASE ecommerce_oltp;
+CREATE DATABASE ecommerce_dw;
+CREATE USER 'ecommerce_user'@'localhost' IDENTIFIED BY 'Ecommerce_pass123!';
+GRANT ALL PRIVILEGES ON ecommerce_oltp.* TO 'ecommerce_user'@'localhost';
+GRANT ALL PRIVILEGES ON ecommerce_dw.* TO 'ecommerce_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+---
+
+### 4. Frontend Setup
+
+```bash
+cd frontend
+npm install
+```
+
+---
+
+## ▶️ Running the Project
+
+You need **2 terminal windows** open simultaneously:
+
+**Terminal 1 — Backend:**
+```bash
+cd backend
+.\venv\Scripts\activate      # Windows
+# source venv/bin/activate   # Mac/Linux
+uvicorn main:app --reload
+```
+✅ Backend running at `http://localhost:8000`
+
+**Terminal 2 — Frontend:**
+```bash
+cd frontend
+npm run dev
+```
+✅ Frontend running at `http://localhost:5173`
+
+---
+
+## ⚡ Running the Spark ML Job
+
+The Spark job trains the ALS model and generates recommendations for all users. Run it once (or whenever you want to retrain):
+
+```bash
+# From project root, with venv activated
+python bigdata/spark_jobs/recommend.py
+```
+
+**Expected output:**
+```
+✅ Spark Session started
+✅ DataFrame created with 24 records
+✅ ALS Model trained
+✅ RMSE: 1.7481
+✅ Saved to bigdata/spark_jobs/output/recommendations.json
+✅ Done
+```
+
+---
+
+## 🌐 API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/` | Health check |
+| `POST` | `/recommend` | Get Apriori recommendations for a basket |
+| `GET` | `/analytics` | Full analytics stats |
+| `GET` | `/products` | All product list |
+| `POST` | `/track` | Log user activity to MongoDB |
+| `GET` | `/activity` | Retrieve tracked activity |
+| `POST` | `/recalculate` | Retrain Apriori with new params |
+| `POST` | `/api/spark/run` | Trigger Spark ALS ML job |
+| `GET` | `/api/spark/recommendations/{user_id}` | Get Spark recs for a user |
+| `GET` | `/api/spark/status` | Check Spark pipeline health |
+
+**Interactive API docs:** `http://localhost:8000/docs`
+
+---
+
+## 🧪 Testing the Spark API
+
+**Check status:**
+```
+GET http://localhost:8000/api/spark/status
+```
+
+**Trigger Spark job (PowerShell):**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8000/api/spark/run" -Method POST
+```
+
+**Get recommendations for user 1:**
+```
+GET http://localhost:8000/api/spark/recommendations/1
+```
+
+**Sample response:**
+```json
+{
+  "status": "success",
+  "user_id": 1,
+  "rmse": 1.7481,
+  "data": {
+    "user_id": 1,
+    "recommendations": [
+      { "product_id": 101, "product_name": "Laptop", "predicted_rating": 4.88 },
+      { "product_id": 107, "product_name": "Keyboard", "predicted_rating": 4.13 },
+      { "product_id": 102, "product_name": "Phone", "predicted_rating": 3.01 }
+    ]
+  }
+}
+```
+
+---
+
+## 📁 Project Structure
+
+```
+dbms proj 4/
+├── backend/
+│   ├── main.py                  ← FastAPI app + all API routes
+│   ├── apriori_pipeline.py      ← Apriori rule mining
+│   ├── mongo_connection.py      ← MongoDB connector
+│   ├── patch_cache.py           ← Cache utilities
+│   ├── rules_cache.json         ← 176 pre-computed Apriori rules
+│   ├── stats_cache.json         ← Analytics data cache
+│   └── requirements.txt
+├── frontend/
+│   └── ...                      ← React + Vite app
+├── bigdata/
+│   └── spark_jobs/
+│       ├── recommend.py         ← PySpark ALS ML job
+│       └── output/
+│           └── recommendations.json  ← Spark output (generated)
+├── db_connection.py             ← MySQL connection helpers
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 🎓 Big Data Concepts Implemented
+
+| Concept | Implementation | Location |
+|---|---|---|
+| **Distributed Computing** | `SparkSession.master("local[*]")` — all CPU cores in parallel | `recommend.py` |
+| **Apache Spark** | PySpark 3.4.1 processing engine | `recommend.py` |
+| **Spark MLlib** | ALS (Alternating Least Squares) collaborative filtering | `recommend.py` |
+| **Spark DataFrames** | `spark.createDataFrame()` — distributed data structure | `recommend.py` |
+| **ETL Pipeline** | Extract data → Spark transforms → JSON output | `recommend.py` |
+| **Train/Test Split** | `randomSplit([0.8, 0.2], seed=42)` — 80/20 validation | `recommend.py` |
+| **RMSE Evaluation** | `RegressionEvaluator` — model accuracy metric | `recommend.py` |
+| **Batch Processing** | `recommendForAllUsers(5)` — all users at once | `recommend.py` |
+| **Cold Start Handling** | `coldStartStrategy="drop"` — handles new users | `recommend.py` |
+| **Big Data API Layer** | 3 FastAPI endpoints serving Spark output | `main.py` |
+
+---
+
+## 🗄️ Database Schema
+
+### MySQL — OLTP (`ecommerce_oltp`)
+Stores raw transactional data: users, products, orders, order_items.
+
+### MySQL — Data Warehouse (`ecommerce_dw`)
+Stores aggregated analytics: fact tables, dimension tables for reporting.
+
+### MongoDB
+Stores real-time user activity logs (product views, basket additions, clicks).
+
+---
+
+## ⚠️ Known Issues
+
+- Frontend "Business Intelligence metrics" section may show loading skeletons — this is a pre-existing UI bug unrelated to backend functionality
+- For demo purposes, use `http://localhost:8000/docs` (Swagger UI) to test all APIs interactively
